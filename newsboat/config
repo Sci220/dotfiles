@@ -1,0 +1,110 @@
+# ========================
+# Core Settings
+# ========================
+show-read-feeds no                # Hide feeds with no unread articles
+auto-reload yes                   # Automatically reload feeds on startup
+reload-time 30                    # Reload feeds every 30 minutes
+confirm-mark-all-feeds-read no    # No confirmation for marking all feeds as read
+text-width 80                     # Wrap text at 80 characters
+download-timeout 60               # Timeout for feed downloads (seconds)
+show-read-articles no             # Hide read articles for cleaner view
+feed-sort-order unreadarticlecount-asc # Sort feeds by unread count
+
+# ========================
+# Display & Formatting
+# ========================
+display-article-progress yes      # Show progress reading an article
+datetime-format "%b %d, %Y"       # Date format in the article list
+feedlist-format "%4i %n %11u (%T) %t"  # Format of the feed list
+articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"  # Format of the article list
+notify-program "/usr/bin/notify-send"  # Program for notifications
+notify-format "Newsboat: %n unread articles"  # Format for notifications
+html-renderer "w3m -T text/html"  # HTML renderer for better article display
+pager internal                    # Use internal pager for articles
+
+# ========================
+# Color Scheme (Catppuccin Macchiato Theme)
+# ========================
+color background          default   default
+color listnormal          color245  default
+color listnormal_unread   color245  default  bold
+color listfocus           color110  color236
+color listfocus_unread    color221  color236  bold
+color info                color110  color236  bold
+color article             color245  default
+color end-of-text-marker  color245  default  dim
+color title               color110  default  bold
+
+# ========================
+# Article Presentation
+# ========================
+browser "xdg-open %u"             # Default browser command
+scrolloff 5                       # Keep 5 lines of context when scrolling
+show-keymap-hint yes              # Show key bindings at the bottom
+wrap-scroll yes                   # Wrap when scrolling past the end
+articlelist-title-format "%N: %T (%u unread, %t total)"  # Format for article list title
+feedlist-title-format "Feeds (%u unread, %t total)"  # Format for feed list title
+
+# ========================
+# Key Bindings (Vim-style)
+# ========================
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+bind-key j next
+bind-key k prev
+bind-key J next-feed
+bind-key K prev-feed
+bind-key g home
+bind-key G end
+bind-key b pageup
+bind-key SPACE pagedown
+
+# Additional bindings
+bind-key r reload-all
+bind-key R mark-all-feeds-read
+bind-key u show-urls
+bind-key / open-search
+bind-key n next-unread
+bind-key N prev-unread
+bind-key a toggle-article-read
+bind-key c toggle-show-read-feeds
+
+# ========================
+# Macros
+# ========================
+# Mark all feeds as read and quit
+macro z mark-all-feeds-read ; quit
+
+# Open article in browser and mark as read
+macro o open-in-browser ; toggle-article-read
+
+# Copy URL to clipboard (requires xclip)
+macro c set browser "echo %u | xclip -selection clipboard" ; open-in-browser ; set browser "xdg-open %u"
+
+# View article using w3m
+macro w set browser "w3m %u" ; open-in-browser ; set browser "xdg-open %u"
+
+# Filter articles by title
+macro f set-filter ; open
+
+# Clear current filter
+macro F clear-filter ; open
+
+# ========================
+# Highlighting Rules
+# ========================
+highlight article "^(Feed|Title|Author|Link|Date): .*" color136 default bold
+highlight article "^(Feed|Title|Author|Link|Date):" color136 default
+highlight article "\\[[0-9]+\\]" color136 default bold
+highlight article "\\[image\\ [0-9]+\\]" color136 default bold
+highlight article ":.*\\(link\\)$" color136 default
+highlight article ":.*\\(image\\)$" color136 default
+# highlight for separator lines
+highlight article "^─+$" color136 default bold
+
+# ========================
+# End of Configuration
+# ========================
