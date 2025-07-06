@@ -1,0 +1,273 @@
+/* Soft Dark Theme for Waybar (Catppuccin-inspired) */
+* {
+    font-family: "Fira Sans", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.4s ease;
+}
+
+#waybar {
+background-color: rgba(30, 30, 46, 0.7);
+color: #cdd6f4;
+border-radius: 0;
+margin: 0;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+padding: 4px 8px;
+margin: 2px 4px;
+background-color: #313244;
+color: #cdd6f4;
+font-size: 13px;
+border-radius: 8px;
+}
+
+#workspaces button.active {
+background-color: #89b4fa;
+color: #1e1e2e;
+}
+
+#workspaces button:hover {
+background-color: #45475a;
+}
+
+#workspaces button.urgent {
+background-color: #f38ba8;
+color: #1e1e2e;
+}
+
+#workspaces {
+background-color: transparent;
+padding: 2px 6px;
+}
+
+#window {
+background-color: #1e1e2e;
+font-weight: 600;
+padding: 4px 10px;
+color: #cdd6f4;
+opacity: 1;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory {
+background-color: #313244;
+color: #cdd6f4;
+padding: 4px 10px;
+}
+
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#mode,
+#idle_inhibitor,
+#mpd,
+#bluetooth,
+#language,
+#keyboard-state,
+#custom-power,
+#custom-weather,
+#custom-bitperfect,
+#custom-nowplaying {
+background-color: #313244;
+padding: 4px 10px;
+color: #cdd6f4;
+}
+
+/* Enhanced updates module styling */
+#custom-updates {
+background-color: #313244;
+padding: 4px 10px;
+color: #cdd6f4;
+font-weight: 500;
+min-width: 40px;
+}
+
+#custom-updates.updated {
+color: #a6e3a1;
+background-color: #313244;
+}
+
+#custom-updates.normal {
+color: #fab387;
+background-color: #313244;
+}
+
+#custom-updates.urgent {
+color: #f38ba8;
+background-color: #313244;
+animation: blink-updates 1s linear infinite;
+}
+
+#custom-updates:hover {
+opacity: 0.85;
+}
+
+#cpu {
+color: #fab387;
+}
+
+#memory {
+color: #f9e2af;
+}
+
+#battery {
+color: #89b4fa;
+}
+
+#battery.charging {
+color: #a6e3a1;
+}
+
+#battery.critical:not(.charging) {
+color: #f38ba8;
+animation: blink 0.8s infinite alternate;
+}
+
+#pulseaudio {
+color: #94e2d5;
+}
+
+#temperature {
+color: #f2cdcd;
+}
+
+#temperature.critical {
+background-color: #f38ba8;
+color: #1e1e2e;
+}
+
+#network {
+color: #cba6f7;
+}
+
+#network.disconnected {
+color: #f38ba8;
+}
+
+#bluetooth {
+color: #89dceb;
+}
+
+#bluetooth.disconnected {
+color: #f38ba8;
+}
+
+#tray,
+#custom-launcher,
+#custom-screenshot_t {
+background-color: #313244;
+padding: 4px 10px;
+}
+
+#custom-weather.sunnyDay {
+color: #f9e2af;
+}
+
+#custom-weather.clearNight {
+color: #cdd6f4;
+}
+
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight {
+color: #bac2de;
+}
+
+#custom-weather.rainyDay,
+#custom-weather.rainyNight {
+color: #94e2d5;
+}
+
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight {
+color: #a6adc8;
+}
+
+#custom-bitperfect.bitperfect-glow {
+color: #94e2d5;
+font-weight: bold;
+animation: pulse 1.5s ease-in-out 0s 3;
+}
+
+#custom-bitperfect.bitperfect-orange {
+color: #f9e2af;
+font-weight: bold;
+animation: pulse-orange 1.5s ease-in-out 0s 3;
+}
+
+#custom-nowplaying {
+color: #89b4fa;
+font-weight: 500;
+}
+
+#custom-nowplaying.nowplaying-muted {
+color: #7f849c;
+font-style: italic;
+}
+
+#custom-nowplaying:hover {
+opacity: 0.85;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes blink-updates {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 3px #94e2d5; }
+    50% { text-shadow: 0 0 10px #94e2d5; }
+    100% { text-shadow: 0 0 3px #94e2d5; }
+}
+
+@keyframes pulse-orange {
+    0% { text-shadow: 0 0 3px #f9e2af; }
+    50% { text-shadow: 0 0 10px #f9e2af; }
+    100% { text-shadow: 0 0 3px #f9e2af; }
+}
+
+#custom-storage {
+background-color: #313244;
+color: #cdd6f4;
+padding: 4px 10px;
+}
+
+/* Optional: Change color based on usage state */
+#custom-storage.warning {
+color: #fab387; /* Peachy */
+}
+
+#custom-storage.critical {
+color: #f38ba8; /* Reddish pink */
+animation: blink 0.8s infinite alternate;
+}
+
+/* Smooth transition */
+#custom-storage {
+transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+#custom-storage:hover {
+opacity: 0.85;
+}

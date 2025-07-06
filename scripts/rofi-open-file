@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Change this to your root search path
+ROOT="$HOME"
+
+# Find files and send to rofi
+# file=$(fd . "$ROOT" --type f | rofi -dmenu -i -p "📁 Open file")
+file=$(fd . "$HOME/.config" --hidden --follow --type f | rofi -dmenu -i -p "⚙️ Open config file")
+
+
+[[ -z "$file" ]] && exit
+
+# Ask what to do
+action=$(printf "Open in default app\nOpen in Kate\nCopy path" | rofi -dmenu -p "What to do with it?")
+
+case "$action" in
+  "Open in default app") xdg-open "$file" ;;
+  "Open in Kate") kate "$file" & ;;
+  "Copy path") echo -n "$file" | wl-copy ;;
+esac

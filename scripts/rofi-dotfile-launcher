@@ -1,0 +1,35 @@
+#!/bin/bash
+
+EDITOR_GUI="kate"
+EDITOR_TUI="nvim" # change to micro/nano if you want
+CLIP_CMD="wl-copy"
+
+# Define categories and paths
+declare -A config_map=(
+  ["🌀 Hyprland"]="$HOME/.config/hypr"
+  ["📊 Waybar"]="$HOME/.config/waybar"
+  ["🐟 Fish"]="$HOME/.config/fish"
+  ["🐈 Kitty"]="$HOME/.config/kitty"
+  ["🎨 Rofi"]="$HOME/.config/rofi"
+  ["💻 Shell/General"]="$HOME"
+)
+
+# Step 1: Choose a category
+choice=$(printf "%s\n" "${!config_map[@]}" | rofi -dmenu -i -p "🎛️ Choose config type:")
+
+[[ -z "$choice" ]] && exit
+
+# Step 2: Pick a file in that category
+folder="${config_map[$choice]}"
+file=$(fd . "$folder" --hidden --type f | rofi -dmenu -i -p "📁 Pick file to open")
+
+[[ -z "$file" ]] && exit
+
+# Step 3: Choose action
+action=$(printf "Open in $EDITOR_GUI\nOpen in $EDITOR_TUI\nCopy path" | rofi -dmenu -p "💥 What to do with it?")
+
+case "$action" in
+  *"$EDITOR_GUI"*) "$EDITOR_GUI" "$file" & ;;
+  *"$EDITOR_TUI"*) foot -e "$EDITOR_TUI" "$file" & ;;  # Use your terminal emulator here
+  "Copy path") echo -n "$file" | "$CLIP_CMD" ;;
+esac
