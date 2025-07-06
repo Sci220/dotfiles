@@ -2,6 +2,10 @@
 
 echo "🔄 Backing up current configurations..."
 
+# Create backup directory with timestamp
+BACKUP_DIR="backups/$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$BACKUP_DIR"
+
 # Function to backup with error handling
 backup_config() {
     local source="$1"
@@ -22,7 +26,8 @@ backup_config "$HOME/.config/hypr" "./hyprland" "Hyprland"
 backup_config "$HOME/.config/waybar" "./waybar" "Waybar"
 backup_config "$HOME/.config/kitty" "./kitty" "Kitty"
 backup_config "$HOME/.config/rofi" "./rofi" "Rofi"
-backup_config "$HOME/wallpapers" "./wallpapers" "Wallpapers"
+backup_config "$HOME/wallpapers" "./wallpapers"
+"Wallpapers"
 backup_config "$HOME/.newsboat/config" "./newsboat" "Newsboat config"
 backup_config "$HOME/.newsboat/urls" "./newsboat" "Newsboat URLs"
 #backup_config "$HOME/.config/nvim" "./nvim" "Neovim"
